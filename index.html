@@ -99,7 +99,7 @@
 <body>
   <div class="box">
     <h1>Lapinnevan Eränkävijät ry</h1>
-    <p>Anna seuran perustamisvuosi päästäksesi lomakkeelle.</p>
+    <p>Salasana.</p>
 
     <div class="pin">
       <input type="text" inputmode="numeric" maxlength="1" id="d1" autocomplete="off">
@@ -162,7 +162,7 @@
         sessionStorage.setItem('allowed', 'true');
         window.location.href = 'lomake.html';
       } else {
-        error.textContent = 'Väärä vuosiluku.';
+        error.textContent = 'Väärä salasana.';
         inputs.forEach(input => input.value = '');
         inputs[0].focus();
       }
