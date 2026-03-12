@@ -8,11 +8,6 @@
     * { box-sizing: border-box; }
 
     body {
-      <script>
-if(!sessionStorage.getItem("allowed")){
-window.location.href="index.html";
-}
-</script>
       margin: 0;
       padding: 24px;
       background: #e9ecef;
@@ -47,17 +42,20 @@ window.location.href="index.html";
       font-weight: bold;
     }
 
-  .name-input {
-  flex: 1;
-  min-width: 260px;
-  padding: 12px;
-  border: 2px solid #444;
-  border-radius: 6px;
-  font-size: 16px;
-  background: #ffffff;
-}
+    .name-input {
+      flex: 1;
+      min-width: 260px;
+      padding: 12px;
+      border: 2px solid #444;
+      border-radius: 6px;
+      font-size: 16px;
+      background: #ffffff;
+    }
 
-
+    .year-input {
+      max-width: 140px;
+      flex: 0 0 140px;
+    }
 
     .grid {
       display: grid;
@@ -141,6 +139,11 @@ window.location.href="index.html";
       background: #184b25;
     }
 
+    .submit-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
     .note {
       margin-top: 12px;
       text-align: center;
@@ -191,6 +194,9 @@ window.location.href="index.html";
     <div class="topbar">
       <label for="nimi">Nimi:</label>
       <input class="name-input" id="nimi" name="nimi" type="text" placeholder="Kirjoita nimesi tähän">
+
+      <label for="vuosi">Vuosi:</label>
+      <input class="name-input year-input" id="vuosi" name="vuosi" type="number" placeholder="2026">
     </div>
 
     <div class="grid">
@@ -203,41 +209,13 @@ window.location.href="index.html";
               <th class="small">määrä</th>
               <th class="small">pisteet</th>
             </tr>
-            <tr>
-              <td class="desc">1. Linturuokintapaikan hoito yli talven 10 pist</td>
-              <td><input type="number" inputmode="numeric" min="0" class="qty" data-points="10"></td>
-              <td class="points-cell">0</td>
-            </tr>
-            <tr>
-              <td class="desc">2. Jänisruokintapaikan hoito yli talven 10 pist</td>
-              <td><input type="number" inputmode="numeric" min="0" class="qty" data-points="10"></td>
-              <td class="points-cell">0</td>
-            </tr>
-            <tr>
-              <td class="desc">3. Riistapellon teko 1 aaria 10 pist</td>
-              <td><input type="number" inputmode="numeric" min="0" class="qty" data-points="10"></td>
-              <td class="points-cell">0</td>
-            </tr>
-            <tr>
-              <td class="desc">4. Lehtikerppujen teko 1 pist</td>
-              <td><input type="number" inputmode="numeric" min="0" class="qty" data-points="1"></td>
-              <td class="points-cell">0</td>
-            </tr>
-            <tr>
-              <td class="desc">5. Apulannan luovutus 2 kg 2 pist</td>
-              <td><input type="number" inputmode="numeric" min="0" class="qty" data-points="2"></td>
-              <td class="points-cell">0</td>
-            </tr>
-            <tr>
-              <td class="desc">6. Ravinnon luovutus, 2 kg vilja, heinä yms. 2 pist</td>
-              <td><input type="number" inputmode="numeric" min="0" class="qty" data-points="2"></td>
-              <td class="points-cell">0</td>
-            </tr>
-            <tr>
-              <td class="desc">7. Haavan tai raidan kaato jäniksille, 1 kpl 10 cm 1 pist</td>
-              <td><input type="number" inputmode="numeric" min="0" class="qty" data-points="1"></td>
-              <td class="points-cell">0</td>
-            </tr>
+            <tr><td class="desc">1. Linturuokintapaikan hoito yli talven 10 pist</td><td><input type="number" min="0" class="qty" data-section="A" data-label="Linturuokintapaikan hoito yli talven 10 pist" data-points="10"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">2. Jänisruokintapaikan hoito yli talven 10 pist</td><td><input type="number" min="0" class="qty" data-section="A" data-label="Jänisruokintapaikan hoito yli talven 10 pist" data-points="10"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">3. Riistapellon teko 1 aaria 10 pist</td><td><input type="number" min="0" class="qty" data-section="A" data-label="Riistapellon teko 1 aaria 10 pist" data-points="10"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">4. Lehtikerppujen teko 1 pist</td><td><input type="number" min="0" class="qty" data-section="A" data-label="Lehtikerppujen teko 1 pist" data-points="1"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">5. Apulannan luovutus 2 kg 2 pist</td><td><input type="number" min="0" class="qty" data-section="A" data-label="Apulannan luovutus 2 kg 2 pist" data-points="2"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">6. Ravinnon luovutus, 2 kg vilja, heinä yms. 2 pist</td><td><input type="number" min="0" class="qty" data-section="A" data-label="Ravinnon luovutus, 2 kg vilja, heinä yms. 2 pist" data-points="2"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">7. Haavan tai raidan kaato jäniksille, 1 kpl 10 cm 1 pist</td><td><input type="number" min="0" class="qty" data-section="A" data-label="Haavan tai raidan kaato jäniksille, 1 kpl 10 cm 1 pist" data-points="1"></td><td class="points-cell">0</td></tr>
           </table>
         </div>
 
@@ -249,21 +227,9 @@ window.location.href="index.html";
               <th class="small">määrä</th>
               <th class="small">pisteet</th>
             </tr>
-            <tr>
-              <td class="desc">1. Sorapaikan teko linnuille 2 pist</td>
-              <td><input type="number" inputmode="numeric" min="0" class="qty" data-points="2"></td>
-              <td class="points-cell">0</td>
-            </tr>
-            <tr>
-              <td class="desc">2. Telkänpänttöjen teko ja sijoitus 5 pist</td>
-              <td><input type="number" inputmode="numeric" min="0" class="qty" data-points="5"></td>
-              <td class="points-cell">0</td>
-            </tr>
-            <tr>
-              <td class="desc">3. Nuolukivien kuljetus maastoon 4 pist</td>
-              <td><input type="number" inputmode="numeric" min="0" class="qty" data-points="4"></td>
-              <td class="points-cell">0</td>
-            </tr>
+            <tr><td class="desc">1. Sorapaikan teko linnuille 2 pist</td><td><input type="number" min="0" class="qty" data-section="B" data-label="Sorapaikan teko linnuille 2 pist" data-points="2"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">2. Telkänpänttöjen teko ja sijoitus 5 pist</td><td><input type="number" min="0" class="qty" data-section="B" data-label="Telkänpänttöjen teko ja sijoitus 5 pist" data-points="5"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">3. Nuolukivien kuljetus maastoon 4 pist</td><td><input type="number" min="0" class="qty" data-section="B" data-label="Nuolukivien kuljetus maastoon 4 pist" data-points="4"></td><td class="points-cell">0</td></tr>
           </table>
         </div>
 
@@ -275,14 +241,14 @@ window.location.href="index.html";
               <th class="small">määrä</th>
               <th class="small">pisteet</th>
             </tr>
-            <tr><td class="desc">1. Varis 2 pist</td><td><input type="number" inputmode="numeric" min="0" class="qty" data-points="2"></td><td class="points-cell">0</td></tr>
-            <tr><td class="desc">2. Harakka 2 pist</td><td><input type="number" inputmode="numeric" min="0" class="qty" data-points="2"></td><td class="points-cell">0</td></tr>
-            <tr><td class="desc">3. Kettu 20 pist</td><td><input type="number" inputmode="numeric" min="0" class="qty" data-points="20"></td><td class="points-cell">0</td></tr>
-            <tr><td class="desc">4. Minkki 20 pist</td><td><input type="number" inputmode="numeric" min="0" class="qty" data-points="20"></td><td class="points-cell">0</td></tr>
-            <tr><td class="desc">5. Näätä 20 pist</td><td><input type="number" inputmode="numeric" min="0" class="qty" data-points="20"></td><td class="points-cell">0</td></tr>
-            <tr><td class="desc">6. Supi 20 pist</td><td><input type="number" inputmode="numeric" min="0" class="qty" data-points="20"></td><td class="points-cell">0</td></tr>
-            <tr><td class="desc">7. Mäyrä 20 pist</td><td><input type="number" inputmode="numeric" min="0" class="qty" data-points="20"></td><td class="points-cell">0</td></tr>
-            <tr><td class="desc">8. Hilleri 20 pist</td><td><input type="number" inputmode="numeric" min="0" class="qty" data-points="20"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">1. Varis 2 pist</td><td><input type="number" min="0" class="qty" data-section="C" data-label="Varis 2 pist" data-points="2"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">2. Harakka 2 pist</td><td><input type="number" min="0" class="qty" data-section="C" data-label="Harakka 2 pist" data-points="2"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">3. Kettu 20 pist</td><td><input type="number" min="0" class="qty" data-section="C" data-label="Kettu 20 pist" data-points="20"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">4. Minkki 20 pist</td><td><input type="number" min="0" class="qty" data-section="C" data-label="Minkki 20 pist" data-points="20"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">5. Näätä 20 pist</td><td><input type="number" min="0" class="qty" data-section="C" data-label="Näätä 20 pist" data-points="20"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">6. Supi 20 pist</td><td><input type="number" min="0" class="qty" data-section="C" data-label="Supi 20 pist" data-points="20"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">7. Mäyrä 20 pist</td><td><input type="number" min="0" class="qty" data-section="C" data-label="Mäyrä 20 pist" data-points="20"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">8. Hilleri 20 pist</td><td><input type="number" min="0" class="qty" data-section="C" data-label="Hilleri 20 pist" data-points="20"></td><td class="points-cell">0</td></tr>
           </table>
         </div>
       </div>
@@ -296,10 +262,10 @@ window.location.href="index.html";
               <th class="small">määrä</th>
               <th class="small">pisteet</th>
             </tr>
-            <tr><td class="desc">1. Luvattoman metsästyksen ilmianto 20 pist</td><td><input type="number" inputmode="numeric" min="0" class="qty" data-points="20"></td><td class="points-cell">0</td></tr>
-            <tr><td class="desc">2. Johtok. toimeksiannosta suora valvonta 4 pist</td><td><input type="number" inputmode="numeric" min="0" class="qty" data-points="4"></td><td class="points-cell">0</td></tr>
-            <tr><td class="desc">3. Riistanlaskenta ja tarkkailu 4 pist</td><td><input type="number" min="0" inputmode="numeric" class="qty" data-points="4"></td><td class="points-cell">0</td></tr>
-            <tr><td class="desc">4. Sairaan eläimen lähetys tutkittavaksi 6 pist</td><td><input type="number" inputmode="numeric" min="0" class="qty" data-points="6"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">1. Luvattoman metsästyksen ilmianto 20 pist</td><td><input type="number" min="0" class="qty" data-section="D" data-label="Luvattoman metsästyksen ilmianto 20 pist" data-points="20"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">2. Johtok. toimeksiannosta suora valvonta 4 pist</td><td><input type="number" min="0" class="qty" data-section="D" data-label="Johtok. toimeksiannosta suora valvonta 4 pist" data-points="4"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">3. Riistanlaskenta ja tarkkailu 4 pist</td><td><input type="number" min="0" class="qty" data-section="D" data-label="Riistanlaskenta ja tarkkailu 4 pist" data-points="4"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">4. Sairaan eläimen lähetys tutkittavaksi 6 pist</td><td><input type="number" min="0" class="qty" data-section="D" data-label="Sairaan eläimen lähetys tutkittavaksi 6 pist" data-points="6"></td><td class="points-cell">0</td></tr>
           </table>
         </div>
 
@@ -311,15 +277,15 @@ window.location.href="index.html";
               <th class="small">määrä</th>
               <th class="small">pisteet</th>
             </tr>
-            <tr><td class="desc">1. Osallistuminen kilpailuihin 6 pist</td><td><input type="number" inputmode="numeric" min="0" class="qty" data-points="6"></td><td class="points-cell">0</td></tr>
-            <tr><td class="desc">2. Osallistuminen retkeilyihin 3 pist</td><td><input type="number" inputmode="numeric" min="0" class="qty" data-points="3"></td><td class="points-cell">0</td></tr>
-            <tr><td class="desc">3. Koiranäyttelyt 1 päivä 4 pist</td><td><input type="number" inputmode="numeric" min="0" class="qty" data-points="4"></td><td class="points-cell">0</td></tr>
-            <tr><td class="desc">4. Ajokokeet 1 päivä 10 pist</td><td><input type="number" inputmode="numeric" min="0" class="qty" data-points="10"></td><td class="points-cell">0</td></tr>
-            <tr><td class="desc">5. Osallistuminen yht. ketunmetsästykseen 4 pist</td><td><input type="number" inputmode="numeric" min="0" class="qty" data-points="4"></td><td class="points-cell">0</td></tr>
-            <tr><td class="desc">6. Leikkuupuinti 2 tunti, mies mukana 50 pist</td><td><input type="number" inputmode="numeric" min="0" class="qty" data-points="50"></td><td class="points-cell">0</td></tr>
-            <tr><td class="desc">7. Talkootunti 4 pist</td><td><input type="number" inputmode="numeric" min="0" class="qty" data-points="4"></td><td class="points-cell">0</td></tr>
-            <tr><td class="desc">8. Traktori ja mies 1 tunti 20 pist</td><td><input type="number" inputmode="numeric" min="0" class="qty" data-points="20"></td><td class="points-cell">0</td></tr>
-            <tr><td class="desc">9. Oman auton käyttö, seuran asioiden hoito 5 pist</td><td><input type="number" inputmode="numeric" min="0" class="qty" data-points="5"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">1. Osallistuminen kilpailuihin 6 pist</td><td><input type="number" min="0" class="qty" data-section="E" data-label="Osallistuminen kilpailuihin 6 pist" data-points="6"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">2. Osallistuminen retkeilyihin 3 pist</td><td><input type="number" min="0" class="qty" data-section="E" data-label="Osallistuminen retkeilyihin 3 pist" data-points="3"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">3. Koiranäyttelyt 1 päivä 4 pist</td><td><input type="number" min="0" class="qty" data-section="E" data-label="Koiranäyttelyt 1 päivä 4 pist" data-points="4"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">4. Ajokokeet 1 päivä 10 pist</td><td><input type="number" min="0" class="qty" data-section="E" data-label="Ajokokeet 1 päivä 10 pist" data-points="10"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">5. Osallistuminen yht. ketunmetsästykseen 4 pist</td><td><input type="number" min="0" class="qty" data-section="E" data-label="Osallistuminen yht. ketunmetsästykseen 4 pist" data-points="4"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">6. Leikkuupuinti 2 tunti, mies mukana 50 pist</td><td><input type="number" min="0" class="qty" data-section="E" data-label="Leikkuupuinti 2 tunti, mies mukana 50 pist" data-points="50"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">7. Talkootunti 4 pist</td><td><input type="number" min="0" class="qty" data-section="E" data-label="Talkootunti 4 pist" data-points="4"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">8. Traktori ja mies 1 tunti 20 pist</td><td><input type="number" min="0" class="qty" data-section="E" data-label="Traktori ja mies 1 tunti 20 pist" data-points="20"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">9. Oman auton käyttö, seuran asioiden hoito 5 pist</td><td><input type="number" min="0" class="qty" data-section="E" data-label="Oman auton käyttö, seuran asioiden hoito 5 pist" data-points="5"></td><td class="points-cell">0</td></tr>
           </table>
         </div>
 
@@ -331,14 +297,14 @@ window.location.href="index.html";
               <th class="small">määrä</th>
               <th class="small">pisteet</th>
             </tr>
-            <tr><td class="desc">1. Puheenjohtaja 30 pist</td><td><input type="number" inputmode="numeric" min="0" class="qty" data-points="30"></td><td class="points-cell">0</td></tr>
-            <tr><td class="desc">2. Sihteeri 30 pist</td><td><input type="number" inputmode="numeric" min="0" class="qty" data-points="30"></td><td class="points-cell">0</td></tr>
-            <tr><td class="desc">3. Rahastonhoitaja 30 pist</td><td><input type="number" inputmode="numeric" min="0" class="qty" data-points="30"></td><td class="points-cell">0</td></tr>
-            <tr><td class="desc">4. Metsästysmajan hoitaja 1 vuosi 30 pist</td><td><input type="number" inputmode="numeric" min="0" class="qty" data-points="30"></td><td class="points-cell">0</td></tr>
-            <tr><td class="desc">5. Hirviseurueen jahtipäällikön tehtävä 30 pist</td><td><input type="number" inputmode="numeric" min="0" class="qty" data-points="30"></td><td class="points-cell">0</td></tr>
-            <tr><td class="desc">6. Kokouksen valmistelutyöt 5 pist</td><td><input type="number" inputmode="numeric" min="0" class="qty" data-points="5"></td><td class="points-cell">0</td></tr>
-            <tr><td class="desc">7. Vuokrasopimuksen teko 4 pist</td><td><input type="number" inputmode="numeric" min="0" class="qty" data-points="4"></td><td class="points-cell">0</td></tr>
-            <tr><td class="desc">8. Kokoukset 4 pist</td><td><input type="number" inputmode="numeric" min="0" class="qty" data-points="4"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">1. Puheenjohtaja 30 pist</td><td><input type="number" min="0" class="qty" data-section="F" data-label="Puheenjohtaja 30 pist" data-points="30"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">2. Sihteeri 30 pist</td><td><input type="number" min="0" class="qty" data-section="F" data-label="Sihteeri 30 pist" data-points="30"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">3. Rahastonhoitaja 30 pist</td><td><input type="number" min="0" class="qty" data-section="F" data-label="Rahastonhoitaja 30 pist" data-points="30"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">4. Metsästysmajan hoitaja 1 vuosi 30 pist</td><td><input type="number" min="0" class="qty" data-section="F" data-label="Metsästysmajan hoitaja 1 vuosi 30 pist" data-points="30"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">5. Hirviseurueen jahtipäällikön tehtävä 30 pist</td><td><input type="number" min="0" class="qty" data-section="F" data-label="Hirviseurueen jahtipäällikön tehtävä 30 pist" data-points="30"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">6. Kokouksen valmistelutyöt 5 pist</td><td><input type="number" min="0" class="qty" data-section="F" data-label="Kokouksen valmistelutyöt 5 pist" data-points="5"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">7. Vuokrasopimuksen teko 4 pist</td><td><input type="number" min="0" class="qty" data-section="F" data-label="Vuokrasopimuksen teko 4 pist" data-points="4"></td><td class="points-cell">0</td></tr>
+            <tr><td class="desc">8. Kokoukset 4 pist</td><td><input type="number" min="0" class="qty" data-section="F" data-label="Kokoukset 4 pist" data-points="4"></td><td class="points-cell">0</td></tr>
             <tr class="total-row">
               <td class="desc">YHT. + riistakortin palautus 5 pist</td>
               <td><input type="number" id="grand-total" readonly value="5"></td>
@@ -356,53 +322,55 @@ window.location.href="index.html";
               <th>Laji</th>
               <th class="small">määrä</th>
             </tr>
-            <tr><td class="desc">Metso</td><td><input type="number" inputmode="numeric" min="0"></td></tr>
-            <tr><td class="desc">Teeri</td><td><input type="number" inputmode="numeric" min="0"></td></tr>
-            <tr><td class="desc">Pyy</td><td><input type="number" inputmode="numeric" min="0"></td></tr>
-            <tr><td class="desc">Riekko</td><td><input type="number" inputmode="numeric" min="0"></td></tr>
-            <tr><td class="desc">Kyyhky</td><td><input type="number" inputmode="numeric" min="0"></td></tr>
-            <tr><td class="desc">Peltopyy</td><td><input type="number" inputmode="numeric" min="0"></td></tr>
-            <tr><td class="desc">Fasaani</td><td><input type="number" inputmode="numeric" min="0"></td></tr>
-            <tr><td class="desc">Hanhi</td><td><input type="number" inputmode="numeric" min="0"></td></tr>
-            <tr><td class="desc">Haapana</td><td><input type="number" inputmode="numeric" min="0"></td></tr>
-            <tr><td class="desc">Sinisorsa</td><td><input type="number" inputmode="numeric" min="0"></td></tr>
-            <tr><td class="desc">Koskelo</td><td><input type="number" inputmode="numeric" min="0"></td></tr>
-            <tr><td class="desc">Telkkä</td><td><input type="number" inputmode="numeric" min="0"></td></tr>
-            <tr><td class="desc">Tavi</td><td><input type="number" inputmode="numeric" min="0"></td></tr>
-            <tr><td class="desc">Lehtokurppa</td><td><input type="number" inputmode="numeric" min="0"></td></tr>
-            <tr><td class="desc">Jouhisorsa</td><td><input type="number" inputmode="numeric" min="0"></td></tr>
-            <tr><td class="desc">Muut vesilinnut</td><td><input type="number" inputmode="numeric" min="0"></td></tr>
-            <tr><td class="desc">Metsäjänis</td><td><input type="number" inputmode="numeric" min="0"></td></tr>
-            <tr><td class="desc">Rusakko</td><td><input type="number" inputmode="numeric" min="0"></td></tr>
-            <tr><td class="desc">Kettu</td><td><input type="number" inputmode="numeric" min="0"></td></tr>
-            <tr><td class="desc">Mäyrä</td><td><input type="number" inputmode="numeric" min="0"></td></tr>
-            <tr><td class="desc">Supikoira</td><td><input type="number" inputmode="numeric" min="0"></td></tr>
-            <tr><td class="desc">Näätä</td><td><input type="number" inputmode="numeric" min="0"></td></tr>
-            <tr><td class="desc">Minkki</td><td><input type="number" inputmode="numeric" min="0"></td></tr>
-            <tr><td class="desc">Kärppä</td><td><input type="number" inputmode="numeric" min="0"></td></tr>
-            <tr><td class="desc">Orava</td><td><input type="number" inputmode="numeric" min="0"></td></tr>
-            <tr><td class="desc">Piisami</td><td><input type="number" inputmode="numeric" min="0"></td></tr>
-            <tr><td class="desc">Varislinnut</td><td><input type="number" inputmode="numeric" min="0"></td></tr>
-            <tr><td class="desc">Hirvi</td><td><input type="number" inputmode="numeric" min="0"></td></tr>
-            <tr><td class="desc">Peura</td><td><input type="number" inputmode="numeric" min="0"></td></tr>
-            <tr><td class="desc">Kauris</td><td><input type="number" inputmode="numeric" min="0"></td></tr>
+            <tr><td class="desc">Metso</td><td><input type="number" min="0" class="saalis-input" data-label="Metso"></td></tr>
+            <tr><td class="desc">Teeri</td><td><input type="number" min="0" class="saalis-input" data-label="Teeri"></td></tr>
+            <tr><td class="desc">Pyy</td><td><input type="number" min="0" class="saalis-input" data-label="Pyy"></td></tr>
+            <tr><td class="desc">Riekko</td><td><input type="number" min="0" class="saalis-input" data-label="Riekko"></td></tr>
+            <tr><td class="desc">Kyyhky</td><td><input type="number" min="0" class="saalis-input" data-label="Kyyhky"></td></tr>
+            <tr><td class="desc">Peltopyy</td><td><input type="number" min="0" class="saalis-input" data-label="Peltopyy"></td></tr>
+            <tr><td class="desc">Fasaani</td><td><input type="number" min="0" class="saalis-input" data-label="Fasaani"></td></tr>
+            <tr><td class="desc">Hanhi</td><td><input type="number" min="0" class="saalis-input" data-label="Hanhi"></td></tr>
+            <tr><td class="desc">Haapana</td><td><input type="number" min="0" class="saalis-input" data-label="Haapana"></td></tr>
+            <tr><td class="desc">Sinisorsa</td><td><input type="number" min="0" class="saalis-input" data-label="Sinisorsa"></td></tr>
+            <tr><td class="desc">Koskelo</td><td><input type="number" min="0" class="saalis-input" data-label="Koskelo"></td></tr>
+            <tr><td class="desc">Telkkä</td><td><input type="number" min="0" class="saalis-input" data-label="Telkkä"></td></tr>
+            <tr><td class="desc">Tavi</td><td><input type="number" min="0" class="saalis-input" data-label="Tavi"></td></tr>
+            <tr><td class="desc">Lehtokurppa</td><td><input type="number" min="0" class="saalis-input" data-label="Lehtokurppa"></td></tr>
+            <tr><td class="desc">Jouhisorsa</td><td><input type="number" min="0" class="saalis-input" data-label="Jouhisorsa"></td></tr>
+            <tr><td class="desc">Muut vesilinnut</td><td><input type="number" min="0" class="saalis-input" data-label="Muut vesilinnut"></td></tr>
+            <tr><td class="desc">Metsäjänis</td><td><input type="number" min="0" class="saalis-input" data-label="Metsäjänis"></td></tr>
+            <tr><td class="desc">Rusakko</td><td><input type="number" min="0" class="saalis-input" data-label="Rusakko"></td></tr>
+            <tr><td class="desc">Kettu</td><td><input type="number" min="0" class="saalis-input" data-label="Kettu"></td></tr>
+            <tr><td class="desc">Mäyrä</td><td><input type="number" min="0" class="saalis-input" data-label="Mäyrä"></td></tr>
+            <tr><td class="desc">Supikoira</td><td><input type="number" min="0" class="saalis-input" data-label="Supikoira"></td></tr>
+            <tr><td class="desc">Näätä</td><td><input type="number" min="0" class="saalis-input" data-label="Näätä"></td></tr>
+            <tr><td class="desc">Minkki</td><td><input type="number" min="0" class="saalis-input" data-label="Minkki"></td></tr>
+            <tr><td class="desc">Kärppä</td><td><input type="number" min="0" class="saalis-input" data-label="Kärppä"></td></tr>
+            <tr><td class="desc">Orava</td><td><input type="number" min="0" class="saalis-input" data-label="Orava"></td></tr>
+            <tr><td class="desc">Piisami</td><td><input type="number" min="0" class="saalis-input" data-label="Piisami"></td></tr>
+            <tr><td class="desc">Varislinnut</td><td><input type="number" min="0" class="saalis-input" data-label="Varislinnut"></td></tr>
+            <tr><td class="desc">Hirvi</td><td><input type="number" min="0" class="saalis-input" data-label="Hirvi"></td></tr>
+            <tr><td class="desc">Peura</td><td><input type="number" min="0" class="saalis-input" data-label="Peura"></td></tr>
+            <tr><td class="desc">Kauris</td><td><input type="number" min="0" class="saalis-input" data-label="Kauris"></td></tr>
           </table>
         </div>
       </div>
     </div>
 
     <div class="submit-row">
+      <input type="hidden" name="_subject" value="Uusi riistapistekortti" />
+      <input type="hidden" name="lomakedata" id="lomakedata" />
       <button class="submit-btn" type="button">Lähetä</button>
     </div>
 
     <div class="note">
-      Tämä versio laskee pisteet automaattisesti. Tallennus ja admin-näkymä tehdään seuraavassa vaiheessa.
+      Tämä versio laskee pisteet automaattisesti ja lähettää tiedot talteen.
     </div>
   </div>
 
   <script>
     function calculateTotals() {
-      let grandTotal = 5; // riistakortin palautus
+      let grandTotal = 5;
 
       document.querySelectorAll('.qty').forEach((input) => {
         const qty = parseFloat(input.value) || 0;
@@ -421,9 +389,106 @@ window.location.href="index.html";
       document.getElementById('grand-total-text').textContent = grandTotal;
     }
 
+    function collectFormDataText() {
+      const lines = [];
+
+      const nimi = document.getElementById('nimi')?.value || '';
+      const vuosi = document.getElementById('vuosi')?.value || '';
+      const total = document.getElementById('grand-total')?.value || '5';
+
+      lines.push(`Nimi: ${nimi}`);
+      lines.push(`Vuosi: ${vuosi}`);
+      lines.push(`Kokonaissumma: ${total}`);
+      lines.push('');
+
+      const sectionTitles = {
+        A: 'A. Riistanruokinta',
+        B: 'B. Elinympäristön hoito',
+        C: 'C. Vahinkoeläinten säätely',
+        D: 'D. Metsästyksen vartiointi ja tarkkailu',
+        E: 'E. Kilpailu- ja talkootoiminta',
+        F: 'F. Seuran toiminta'
+      };
+
+      for (const sectionKey of ['A', 'B', 'C', 'D', 'E', 'F']) {
+        lines.push(sectionTitles[sectionKey]);
+
+        document.querySelectorAll(`.qty[data-section="${sectionKey}"]`).forEach((input) => {
+          const label = input.dataset.label || '';
+          const qty = parseFloat(input.value) || 0;
+          const points = qty * (parseFloat(input.dataset.points) || 0);
+          lines.push(`- ${label}: määrä ${qty}, pisteet ${points}`);
+        });
+
+        lines.push('');
+      }
+
+      lines.push('Saalistilasto');
+
+      document.querySelectorAll('.saalis-input').forEach((input) => {
+        const label = input.dataset.label || '';
+        const qty = parseFloat(input.value) || 0;
+        lines.push(`- ${label}: ${qty}`);
+      });
+
+      return lines.join('\n');
+    }
+
+    async function submitForm() {
+      const nimi = document.getElementById('nimi')?.value.trim();
+      const vuosi = document.getElementById('vuosi')?.value.trim();
+
+      if (!nimi) {
+        alert('Kirjoita nimi ennen lähettämistä.');
+        return;
+      }
+
+      if (!vuosi) {
+        alert('Kirjoita vuosi ennen lähettämistä.');
+        return;
+      }
+
+      const lomakedata = collectFormDataText();
+      document.getElementById('lomakedata').value = lomakedata;
+
+      const button = document.querySelector('.submit-btn');
+      button.disabled = true;
+      button.textContent = 'Lähetetään...';
+
+      try {
+        const formData = new FormData();
+        formData.append('nimi', nimi);
+        formData.append('vuosi', vuosi);
+        formData.append('kokonaissumma', document.getElementById('grand-total')?.value || '5');
+        formData.append('lomakedata', lomakedata);
+        formData.append('_subject', `Riistapistekortti - ${nimi} - ${vuosi}`);
+
+        const response = await fetch('https://formspree.io/f/mkoqbzpg', {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          alert('Riistapistekortti lähetetty onnistuneesti.');
+        } else {
+          alert('Lähetys epäonnistui.');
+        }
+      } catch (error) {
+        alert('Lähetys epäonnistui.');
+      } finally {
+        button.disabled = false;
+        button.textContent = 'Lähetä';
+      }
+    }
+
     document.querySelectorAll('.qty').forEach((input) => {
       input.addEventListener('input', calculateTotals);
     });
+
+    document.querySelector('.submit-btn').addEventListener('click', submitForm);
 
     calculateTotals();
   </script>
